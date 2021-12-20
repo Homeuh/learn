@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue@next"></script>
+    <style>
+        .click{
+            color: red
+        }
+    </style>
+</head>
+<body>
+    <ul id="array-rendering" class="demo">
+        <li v-for="(item,index) in items"
+            :key="item.message"
+            :class="{click:currentIndex === index}"
+            @click="currentIndex = index">
+            {{ item.message }}
+        </li>
+    </ul>
+    <script>
+        Vue.createApp({
+            data() {
+                return {
+                    items: [{ message: 'Foo' }, { message: 'Bar' }],
+                    currentIndex: 0
+                }
+            }
+        }).mount('#array-rendering')
+    </script>
+</body>
+</html>

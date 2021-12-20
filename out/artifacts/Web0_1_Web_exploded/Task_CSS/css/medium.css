@@ -1,0 +1,37 @@
+.col-medium-1 {
+  grid-column: span 1;
+}
+.col-medium-2 {
+  grid-column: span 2;
+}
+.col-medium-3 {
+  grid-column: span 3;
+}
+.col-medium-4 {
+  grid-column: span 4;
+}
+.col-medium-5 {
+  grid-column: span 5;
+}
+.col-medium-6 {
+  grid-column: span 6;
+}
+.col-medium-7 {
+  grid-column: span 7;
+}
+.col-medium-8 {
+  grid-column: span 8;
+}
+.col-medium-9 {
+  grid-column: span 9;
+}
+.col-medium-10 {
+  grid-column: span 10;
+}
+.col-medium-11 {
+  grid-column: span 11;
+}
+.col-medium-12 {
+  grid-column: span 12;
+}
+/*# sourceMappingURL=medium.css.map */

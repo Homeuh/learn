@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            height: 150px;
+            overflow: hidden;
+            margin: 1rem;
+            transition: 1s;
+        }
+        div>img{
+            height: 100%;
+        }
+        body:hover div{
+            filter: blur(2px);
+        }
+        main:hover div{
+            transform: scale(.6);/*异曲同工perspective(900px) translateZ(200px);*/
+        }
+        main:hover div:hover{
+            filter: none;
+            transform: scale(1.3);/*perspective(900px) translateZ(200px);*/
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div><img src="image/chenglong.jpg" alt=""></div>
+        <div><img src="image/laodie2.jpg" alt=""></div>
+        <div><img src="image/daolong.jpg" alt=""></div>
+    </main>
+</body>
+</html>

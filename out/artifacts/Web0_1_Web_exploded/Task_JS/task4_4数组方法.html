@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>// 实现两个数组拼接,返回一个新数组
+        function arrJoin(arr1,arr2){
+            return [...arr1,...arr2];
+            // your implement
+        }
+        //测试用例
+        var arr1 = ['1','2','3'];
+        var arr2 = ['3','6','1']
+        console.log(arrJoin(arr1,arr2)); // ['1','2','3','3','6','1']
+
+        // 利用reduce()实现两个数组归并
+        function arrMerge(arr1,arr2){
+            arr2.reduce((prev,cur)=>{
+                if(!arr1.includes(cur))
+                    arr1.push(cur);
+            },0)
+            // your implement
+            return arr1;
+        }
+
+        //测试用例
+        var arr1 = ['1','2','3'];
+        var arr2 = ['3','6','1']
+        console.log(arrMerge(arr1,arr2)); // ['1','2','3','6']
+
+
+        // 使用map()实现数组遍历，让数组中每一个元素都乘以2
+        function arrDouble(arr){
+            return arr.map(item=>item*2)
+            // your implement
+        }
+        //测试用例
+        console.log(arrDouble(['1','2','3'])); // ['2','4','6']
+
+        // 利用filter()筛选出数组中大于10的元素
+        function largerThan10(arr){
+            return arr.filter(item=>item>10)
+            // your implement
+        }
+        //测试用例
+        console.log(largerThan10(['1','2','3'])); // []
+        console.log(largerThan10(['1','10','11'])); // ['11']
+
+        // 封装数组去重函数,去除数组中重复的元素,
+        // 该方法添加到数组原型方法上去
+        //数组去重方法①reduce；②set；③indexOf;④includes
+        Array.prototype.norepeat = function(){
+            const arr = [];
+            for (let i = 0; i < this.length; i++) {
+                if(arr.indexOf(this[i]) === -1)
+                    arr.push(this[i])
+            }
+            return arr;
+            // return this.reduce((prev,cur) => {
+            //     if(!prev.includes(cur))
+            //         prev = [...prev,cur];
+            //     return prev;
+            // },[])
+            // return [...new Set(this)]
+            // your implement
+        }
+
+        //测试用例
+        var arr = ['a','ab','a'];
+        console.log(arr.norepeat()); // ['a','ab']
+
+        // 实现方法检测数组是否包含特定值
+        Array.prototype.inArray = function(value){
+            //your implement
+            // return this.includes(value);
+            return this.indexOf(value) !== -1
+        }
+
+        //测试用例
+        var arr = ['a','ab','a'];
+        console.log(arr.inArray('b')); // false
+        console.log(arr.inArray('a'));//true
+
+        var arr = ['a','ab','a'];
+        console.log(arr.inArray('b'));//false
+        console.log(arr.inArray('a'));//true
+    </script>
+</body>
+</html>

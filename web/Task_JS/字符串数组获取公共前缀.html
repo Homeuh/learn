@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Animal(name){
+        this.name = name;
+    }
+    Animal.prototype = {
+        getName: function(){
+            return this.name;
+        }
+    }
+    var myDog = new Animal("dog");
+    var getName = myDog.getName;
+    console.log(getName())//window神他妈有name属性
+    getName("cat")
+    //选择末尾元素作为匹配元素，每通过一个匹配计数器＋1，当计数器与数组长度不等时，截取匹配元素再次匹配，以此类推
+    /*function test(arr){
+        let prefix = "";
+        const endElem = arr[arr.length-1];
+        for (let i = endElem.length; i > 0; i--) {
+            let count = 0;
+            let reg = endElem.slice(0,i);
+            arr.forEach(item => {
+                if(item.match(reg)){
+                    count++;
+                }
+            });
+            if(count == arr.length){
+                prefix = reg;
+                break;
+            }
+        }
+        console.log(prefix);
+    }
+    const strs = ["flowers","flight","flow"];
+    const strs2 = ["dog","racecar","car"];
+    test(strs);
+    test(strs2);*/
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    canvas{
+        display: block;
+        margin: auto;
+    }
+    img{
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+    }
+</style>
+<body>
+<img src="image/laodie.jpg" alt="老爹" id="laodie">
+<canvas id="canvas" width="400px" height="400px"></canvas>
+<script>
+    const canvas = document.getElementById("canvas");
+    const el = canvas.getContext('2d');
+    el.fillStyle = "blue";
+    el.fillRect(0,0,canvas.width,canvas.height);
+    for (let i = 0; i < 1000; i++) {
+        const x = Math.floor(Math.random()*canvas.width);
+        const y = Math.floor(Math.random()*canvas.height);
+        el.clearRect(x,y,5,5);
+    }
+    // const img = document.getElementById("laodie");
+    // img.onload = () => {
+    //     canvas.width = img.clientWidth;
+    //     canvas.height = img.clientHeight;
+        // const pat = el.createPattern(img,"no-repeat");
+        // el.fillStyle = pat;
+        // el.fillRect(0,0,canvas.width,canvas.height);
+        // el.drawImage(img,0,0,canvas.width,canvas.height);
+    // };
+
+    // const gradient = el.createLinearGradient(0,0,500,500);
+    // gradient.addColorStop(0,"#1abc9c");
+    // gradient.addColorStop(0.5,"#9b59b6");
+    // gradient.addColorStop(1,"#f1c40f");
+    // el.fillStyle = gradient;
+    // el.font = "30px CascadiaMono";
+    // el.fillText('houdunren.com@向军老师', 10, 250)
+
+    // const gradient = el.createLinearGradient(0,0,500,500);
+    // gradient.addColorStop(0,"#1abc9c");
+    // gradient.addColorStop(0.5,"#9b59b6");
+    // gradient.addColorStop(1,"#f1c40f");
+    // el.strokeStyle = gradient;
+    // el.lineWidth =30;
+    // el.strokeRect(50,50,300,300);
+</script>
+</body>
+</html>

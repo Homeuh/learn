@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul{
+            width: 100vw;
+            height:100vh;
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul li{
+            margin: 10px;
+            padding: 10px 50px;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+        }
+        li:nth-of-type(1){
+            border: 1px solid lightgray;
+            color:darkgray;
+        }
+        li:nth-of-type(1):hover{
+            background-color: lightgray;
+        }
+        li:nth-of-type(2){
+            background-color: indianred;
+            background-clip: border-box;
+        }
+        li:nth-of-type(4){
+            background-color: royalblue;
+            background-clip: border-box;
+        }
+        li:nth-of-type(3){
+            border: 1px solid #16a085;
+            color: #16a085;
+        }
+        li:nth-of-type(3):hover{
+            background-color: #16a085;
+            color: white;
+        }
+        li:nth-of-type(5){
+            border: 1px solid orange;
+            color: orange;
+        }
+        li:nth-of-type(5):hover{
+            background-color: orange;
+            color: white;
+        }
+        li:nth-of-type(6){
+            border-radius: 20px;
+            background-color: mediumspringgreen;
+            background-clip: border-box;
+        }
+        li:nth-of-type(even):hover{
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>Default</li>
+        <li>Danger</li>
+        <li>Success</li>
+        <li>Info</li>
+        <li>Warning</li>
+        <li>Primary</li>
+    </ul>
+</body>
+</html>

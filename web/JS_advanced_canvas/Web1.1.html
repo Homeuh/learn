@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+    let module = (function(){
+        let moduleLists = {};//模块列表集合,往里封装
+        function define(name,modules,action){
+            //依赖模块的功能获取并封装
+            modules.map((value,key)=>{
+                modules[key] = moduleLists[value];
+            });
+            // console.log(modules);
+            moduleLists[name] = action.apply(null,modules);//将依赖模块的封装作为参数导入，执行并保存模块
+            // console.log(moduleLists);
+        }
+        return {define};
+    })();
+    module.define("a",[],function(){
+        return {
+            site:"后盾人",
+            name:"向军"
+        }
+    });
+    module.define("b",["a"],function (a){
+        a.site = "哈哈哈";
+        return {
+            show(){
+            }
+        };
+    });
+    module.define("c",["a","b"],function(...args){
+        args[0].name = "李四";
+        // args.map((value,key)=>{
+        //     object[key] = value;
+        // });
+        function copy(obj){
+            let object = obj instanceof Array?[]:{};
+            for (const [key,value] of Object.entries(obj)) {
+                object[key] = typeof value == "object"?copy(value):value;
+            }
+            return object;
+        }
+        let newObject = copy(args);
+        // console.log(newObject);
+        return Object.assign(newObject[0],newObject[1]);//这里对新建的深拷贝对象newObject进行对象复制
+                                                        // 所以改变的是newObject而不会改变原先的a对象和b对象
+    });
+  </script>
+</body>
+</html>

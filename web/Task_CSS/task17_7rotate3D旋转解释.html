@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #34495e;
+        }
+        main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -200px;
+            margin-top: -200px;
+            width: 400px;
+            height: 400px;
+            border: solid 5px silver;
+            transform-style: preserve-3d;
+            transform: perspective(900px) rotateY(110deg);
+        }
+
+        div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -100px;
+            margin-top: -100px;
+            width: 200px;
+            height: 200px;
+            transform-origin: center center 200px;
+        }
+
+        div:nth-child(1) {
+            background: #2ecc71;
+        }
+
+        div:nth-child(2) {
+            background: #e67e22;
+            transition: 1s;
+        }
+
+        main:hover div:nth-child(2) {
+            /*3D的坐标轴:
+                x轴正向指向右👉；y轴正向指向下👇；z轴正向指向屏幕前的我
+                左手原则，大拇指指向任一坐标轴的方向，4个手指的旋转方向即rotate旋转某一轴的方向。
+                注意：3D旋转和2D旋转并不一样，2D旋转只有rotate()这个方法，等同于3D旋转的rotateZ()方法
+            */
+            transform: rotateY(90deg);
+        }
+    </style>
+</head>
+<body>
+<main>
+    <div></div>
+    <div></div>
+</main>
+</body>
+</html>

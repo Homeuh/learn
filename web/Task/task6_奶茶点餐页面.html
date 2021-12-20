@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 80%;
+            max-width: 600px;
+            margin: 3% auto;
+            text-align: center;
+            border: 1px solid;
+            border-radius: 30px;
+            font-weight: bold;
+        }
+        h1{
+            line-height: 100px;
+        }
+        form > *{
+            margin: 1.5% auto 0;
+        }
+        form hr{
+            width: 15%;
+        }
+        label{
+            display: inline-block;
+            margin-right: 25px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Order your milktea!</h1>
+        <hr>
+    </header>
+    <main>
+        <form action="" id="form1">
+            <label for="taste">你想要什么口味的奶茶？</label>
+            <input type="text" name="taste" value="" id="taste" minlength="2" maxlength="10" required>
+            <hr>
+            <label for="cups">你想要几杯?</label>
+            <input type="number" name="cups" value="" id="cups" min="1" max="4" required>
+            <hr>
+            <label for="num">你需要的糖分量</label><br/>
+            无糖<input type="range" name="num" value="" id="num">全糖
+            <hr>
+            <label for="topping_bingqilin">你想要什么顶料?</label><br/>
+            <input type="checkbox" name="topping" value="冰淇淋" id="topping_bingqilin">
+            <label for="topping_bingqilin">冰淇淋</label>
+            <input type="checkbox" name="topping" value="奶盖" id="topping_naigai">
+            <label for="topping_naigai">奶盖</label>
+            <input type="checkbox" name="topping" value="冰淇淋" id="topping_kekefen">
+            <label for="topping_kekefen">可可粉</label>
+            <hr>
+            <label for="radioSelectedYes">你需要加冰吗?</label><br/>
+
+            <input type="radio" name="radio"  value="Yes" id="radioSelectedYes">
+            <label for="radioSelectedYes">Yes</label>
+            <input type="radio" name="radio" value="No" id="radioSelectedNo">
+            <label for="radioSelectedNo">No</label>
+            <hr>
+            <label for="optionSelect1">你需要加什么料?</label>
+            <Select name="optionSelect1" id="optionSelect1">
+                <option value="珍珠">珍珠</option>
+                <option value="波霸">波霸</option>
+                <option value="布丁">布丁</option>
+            </Select>
+            <hr>
+            <label for="optionSelect2">你要什么规格?</label>
+            <Select name="optionSelect2" id="optionSelect2">
+                <option value="小杯">小杯</option>
+                <option value="中杯">中杯</option>
+                <option value="大杯">大杯</option>
+            </Select>
+            <hr>
+            <label for="textArea">您还有别的什么要求吗</label><br/>
+            <textArea name="textArea" id="textArea"></textArea>
+            <hr>
+            <label for="tel">您的联系方式</label>
+            <input type="tel" name="tel" id="tel" pattern="^1(?:3\d|4[4-9]|5[0-35-9]|6[67]|7[013-8]|8\d|9\d)\d{8}$">
+            <hr>
+            <input type="submit">
+        </form>
+    </main>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        div:nth-child(odd){
+            background: #eee;
+        }
+        div:nth-child(even){
+            background: #fff;
+        }
+        #navbar {
+            text-align: center;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+        }
+        #navbar a {
+            text-decoration: none;
+        }
+        #navbar a:hover{
+            color:black;
+        }
+        #navbar a:link, a:visited {
+            color:white;
+        }
+        .information,.working,.education,.reward{
+            min-height: 300px;
+            text-align: center;
+            padding: 30px;
+        }
+        .information > * {
+            margin: 10px;
+        }
+        .information img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border: 2px solid;
+        }
+        .working p {
+            margin: auto;
+            width: 500px;
+        }
+        .education ul li,.reward ul li{
+            margin: auto;
+            width: 300px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div id = "navbar">
+        <a href="#information">基本信息</a>
+        <a href="#working">工作经历</a>
+        <a href="#education">教育经历</a>
+        <a href="#reward">奖项&证书</a>
+    </div>
+    <div id = "information" class="information">
+        <img src="image/default.jpg" alt="张三">
+        <h2>张三</h2>
+        <p>
+            <span>13532154321</span>
+            <span>123@qq.com</span>
+        </p>
+        <p>
+            <span>21岁</span>
+            <span>男</span>
+            <span>汉族</span>
+            <span>群众</span>
+        </p>
+        <p><span>面议</span></p>
+    </div>
+    <div id = "working" class = "working">
+        <h1>工作经历</h1>
+        <p>2016-2017</p>
+        <h3>担任职位：会计,会计主管</h3>
+        <p>负责新加坡，印度，马莱西亚地区客户，以及国内客户Lenovo，Founder，Haier， LangchaoTCL，
+            Tongfang，日本TOSHIBA，FUJITSU，EPSON，HITACHI等OEM客户鼠标摄像头产品的试作，新品导入，
+            BOM建立维护，量产的导入，PSS的撰写，API的制作，样品图档的制作。和客户之间的信息交互，
+            保证产品的正确快速投产。不良的追踪。物料的管控等等。</p>
+    </div>
+    <div id = "education" class = "education">
+        <h1>教育经历</h1>
+        <p>2010-2014</p>
+        <h3>清华大学</h3>
+        <p>
+            <span>计算机科学与技术</span>
+            <span>本科</span>
+            <span>计算机学院</span>
+        </p>
+        <ul>
+            <li>GPA:4.3</li>
+            <li>语言能力：雅思:7.5</li>
+            <li>相关课程：计算机网络，操作系统，面向对象程序设计，Java企业开发...</li>
+            <li>荣誉/奖项：国家励志奖学金，国家奖学金</li>
+        </ul>
+    </div>
+    <div id = "reward" class = "reward">
+        <h1>荣誉&证书</h1>
+        <ul>
+            <li><span>计算机office三级</span></li>
+            <li><span>数据库工程师软考中级</span></li>
+            <li><span>全国数学建模一等奖</span></li>
+            <li><span>......</span></li>
+        </ul>
+    </div>
+</body>
+</html>

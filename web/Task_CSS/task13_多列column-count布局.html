@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        article{
+            column-count: 3;
+            column-gap: 2em;
+            column-rule: 1px solid black;
+            background-color: rgb(249 247 241);
+        }
+        section{
+            height: 90vh;
+            max-height: 1200px;
+        }
+        h1,div:nth-of-type(1){
+            column-span: all;
+            text-align: center;
+        }
+        h1{
+            font-size: 3.75em;
+            margin: 16px 0;
+        }
+        h2{font-size: 2.2em}
+        h3{font-size: 1.8em}
+        h4{
+            font-size: 1.4em;
+            margin-top: 1.5em;
+            font-variant: small-caps;
+        }
+        div:nth-of-type(1){
+            border-top: 1px solid black;
+            border-bottom: 1px solid black;
+            margin: 16px 0;
+            padding: 16px 0;
+        }
+        p{
+            margin-top: 1.5em;
+        }
+        p[lang="en"] > img{
+            width: 100px;
+            height: 100px;
+            float: left;
+        }
+        p[lang="en"]::first-letter{
+            float: left;
+            font-size: 2em;
+        }
+        section:nth-of-type(2)  img{
+            width: 100px;
+            height: 100px;
+            float: right;
+            margin: 10px;
+        }
+        section:nth-of-type(2) > p::first-letter{
+            float: left;
+            font-size: 2em;
+        }
+        ul{
+            list-style-type: lower-roman;
+            margin: 50px;
+        }
+        section:nth-of-type(3) > p:nth-of-type(1)::first-letter{
+            float: left;
+            font-size: 2em;
+        }
+        section:nth-of-type(3) > div{
+            width: 100px;
+            height: 100px;
+            background-color: #f5e327;
+            float: left;
+            margin: 25px;
+        }
+        section:nth-of-type(3) >div:nth-of-type(4),
+        section:nth-of-type(3) >div:nth-of-type(5),
+        section:nth-of-type(3) >div:nth-of-type(6){
+            background-color: #938e8c
+        }
+        section:nth-of-type(3) > div:nth-of-type(3n+1){
+            border-radius: 40% 5%;
+        }
+        section:nth-of-type(3) > div:nth-of-type(3n+2){
+            border-radius: 5% 40%;
+        }
+        section:nth-of-type(3) > div:nth-of-type(3n+3){
+            border-radius: 50% 50%;
+        }
+    </style>
+</head>
+<body>
+<article>
+    <!--报纸大标题-->
+    <h1>Newspaper Title</h1>
+    <!--时间栏-->
+    <div>
+        <time>Sunday, 9<sup>th</sup> September 2021</time>
+    </div>
+    <!--第一列-->
+    <section>
+        <h2>WHAI IS CSS？</h2>
+        <p>All the documentation in this page is taken from <a href="https://developer.mozilla.org/en-US/docs/Web/CSS">MDN</a></p>
+        <p lang="en">
+            <!--这里的图片需要左浮动-->
+            <img src="image/css.png"/>
+            <!--段落首字需要大写并且下沉-->
+            CSS is a language for specifying how documents are presented to users — how they are styled, laid out, etc A document is usually a text file structured using a markup language — HTML is the most common markup language, but you may also come across other markup languages such as SVG or XML. Presenting a document to a user means converting it into a form usable by your audience. Browsers, like Firefox, Chrome, or Edge , are designed to present documents visually, for example, on a computer screen, projector or printer.
+        </p>
+        <p>
+            CSS can be used for very basic document text styling — for example changing the color and size of headings and links. It can be used to create layout — for example turning a single column of text into a layout with a main content area and a sidebar for related information. It can even be used for effects such as animation
+        </p>
+    </section>
+
+    <!--第二列-->
+    <section>
+        <h3>The Box Model</h3>
+        <p>
+            <!--这里的图片需要右浮动-->
+            <img src="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model/boxmodel-(3).png"/>
+            <!--段落首字需要大写并且下沉-->
+            Everything in CSS has a box around it, and understanding these boxes is key to being able to create layouts with CSS, or to align items with other items. In this lesson, we will take a proper look at the CSS Box Model so that you can build more complex layout tasks with an understanding of how it works and the terminology that relates to it.
+        </p>
+        <!--列表风格需要修改-->
+        <ul>
+            <li>The box will break onto a new line.</li>
+            <li>The box will extend in the inline direction to fill the space available in its container. In most cases this means that the box will become as wide as its container, filling up 100% of the space available.</li>
+            <li>The width and height properties are respected.</li>
+            <li>Padding, margin and border will cause other elements to be pushed away from the box</li>
+        </ul>
+    </section>
+
+    <!--第三列-->
+    <section>
+        <h3>CSS Border Properties</h3>
+        <!--段落首字需要大写并且下沉-->
+        <p>The border-radius CSS property rounds the corners of an element's outer border edge. You can set a single radius to make circular corners, or two radii to make elliptical corners.</p>
+
+        <h4>Border Radius Examples</h4>
+        <p>We can use the border-radius attribute to make the following shapes</p>
+        <!--这里需要添加完成三个不规则形状的出HTML-->
+        <div></div>
+        <div></div>
+        <div></div>
+
+        <h4>Box-shadow demo</h4>
+        <p>Neumorphismis also a popular CSS style. Its main principle is to use the boxshadow attribute</p>
+        <!--这里需要添加完成拟态效果三个不规则形状的出HTML-->
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+</article>
+</body>
+</html>

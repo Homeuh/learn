@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 50%;
+            height: auto;
+            margin: 10px auto;
+            border: 3px solid indianred;
+            border-radius: 10px;
+        }
+        body > *{
+            margin: 10px;
+            border: inherit;
+            border-radius: inherit;
+            color: white;
+            text-align: center;
+
+        }
+        header{
+            line-height: 30px;
+            background-color: indianred;
+        }
+        article > * {
+            margin: 10px;
+            border: inherit;
+            border-radius: inherit;
+            color: inherit;
+            text-align: center;
+            background-color: inherit;
+            line-height: 300px;
+        }
+        article::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        main{
+            float: left;
+            width: 60%;
+            background-color: white;
+            color: indianred;
+        }
+        aside{
+            float: left;
+            width: 15%;
+            background-color: indianred;
+        }
+        footer{
+            background-color: indianred;
+        }
+    </style>
+</head>
+<body>
+    <header>头部</header>
+    <article>
+        <aside>定宽</aside>
+        <main>自适应</main>
+        <aside>定宽</aside>
+    </article>
+    <footer>底部</footer>
+</body>
+</html>

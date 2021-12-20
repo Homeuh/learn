@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/less">
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            background: #34495e;
+        }
+
+        main {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transition: 2s;
+            transform: perspective(900px) rotateY(60deg) scaleZ(5);
+        }
+
+        body:hover main {
+            div.b {
+                background: #8e44ad;
+                transition: 2s;
+                transform: translateZ(-100px);
+            }
+        }
+
+        div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #f1c40f;
+        }
+
+        div.b {
+            background: #8e44ad;
+
+        }
+    </style>
+    <script src="zip/less.js"></script>
+</head>
+<body>
+<main>
+    <div class="f"></div>
+    <div class="b"></div>
+</main>
+</body>
+</html>

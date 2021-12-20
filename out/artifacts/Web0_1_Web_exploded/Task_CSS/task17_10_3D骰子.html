@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/less">
+        *{
+            margin:0;
+            padding: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body:hover .box{
+            transform: perspective(600px) rotateX(-45deg) rotateY(-360deg) ;
+        }
+        .box{
+            position: relative;
+            width: 100px;
+            height: 100px;
+            transform-style: preserve-3d;
+            transform-origin: center center 50px;
+            transition: 2s;
+            transform: perspective(600px) rotateY(90deg);
+            //border: 1px solid white;
+            @color: #cd4a48, #c1437a,#DCC470, #357bbf,#008b8b,#9b59b6;
+            each(range(6),{
+                div:nth-child(@{value}){
+                    background-color: extract(@color,@value);
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 3em;
+                    color: #ffffff;
+                    position: absolute;
+                    transform-origin: center center 50px;
+                    transform: rotateY(90deg*@value);
+                    opacity: .8;
+                    span{
+                        transform: rotateY(180deg);;
+                    }
+                }
+            });
+            div:nth-of-type(5){
+                transform: rotateX(90deg);
+                span{
+                    transform: rotateX(180deg);
+                }
+            }
+            div:nth-of-type(6){
+                transform: rotateX(-90deg);
+                span{
+                    transform: rotateX(180deg);
+                }
+            }
+        }
+    </style>
+    <script src="zip/less.js"></script>
+</head>
+<body>
+    <div class="box">
+        <div><span>1</span></div>
+        <div><span>2</span></div>
+        <div><span>3</span></div>
+        <div><span>4</span></div>
+        <div><span>5</span></div>
+        <div><span>6</span></div>
+    </div>
+</body>
+</html>

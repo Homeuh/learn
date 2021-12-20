@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .grid-container{
+            width: 50vw;
+            height: 50vh;
+            display: grid;
+            grid-template: auto auto/auto auto auto auto;
+            grid-gap: 10px;
+            margin: auto;
+            padding: 10px;
+            background-color: lightgray;
+        }
+        .grid-container > div{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-color: #16a085;
+            background-color: white;
+        }
+        .grid-item1{
+            border: 5px solid;
+        }
+        .grid-item2{
+            border: 5px double;
+        }
+        .grid-item3{
+            border: 5px dashed;
+        }
+        .grid-item4{
+            border: 5px dotted;
+        }
+        .grid-item5{
+            border: 20px groove;
+        }
+        .grid-item6{
+            border: 20px ridge;
+        }
+        .grid-item7{
+            border: 20px inset;
+        }
+        .grid-item8{
+            border: 20px outset;
+        }
+    </style>
+</head>
+<body>
+<div class="grid-container">
+    <div class="grid-item1">5px solid</div>
+    <div class="grid-item2">5px double</div>
+    <div class="grid-item3">5px dashed</div>
+    <div class="grid-item4">5px dotted</div>
+    <div class="grid-item5">20px groove</div>
+    <div class="grid-item6">20px ridge</div>
+    <div class="grid-item7">20px inset</div>
+    <div class="grid-item8">20px outset</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        form{
+            max-width: 60%;
+            height: 70%;
+            border: 1px solid transparent;
+            border-radius: 5px;
+            box-shadow: 0 5px 8px gray;
+            border-top: 5px solid #008b8b;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: 50px auto;
+            padding: 15px;
+        }
+        form *{
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        h1{
+            color: #008b8b;
+            text-align: center;
+        }
+        label{
+            float: left;
+            width: 25%;
+            text-align: right;
+            padding: 10px 15px 0 0;
+            white-space: nowrap;
+        }
+        label::after{
+            content: "";
+            display: block;
+            clear: both;
+        }
+        input,select,textarea{
+            width: 75%;
+            padding: 10px;
+            background-color: whitesmoke;
+            border: 1px solid transparent;
+            border-radius: inherit;
+        }
+        input:focus,select:focus,textarea:focus{
+            padding: 11px;
+        }
+        input[id="user-name"]{
+            background: whitesmoke url("image/userDefault.png") no-repeat 10px 5px;
+            background-size: 2em 2em;
+            padding-left: 45px;
+        }
+        input[type="submit"]{
+            width: auto;
+            float: right;
+            padding: 12px 20px;
+            background-color: #008b8b;
+            color: white;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 600px) {
+            form{
+                height: 90%;
+            }
+            h1{
+                text-align: left;
+            }
+            label{
+                float: none;
+            }
+            input[type],select,textarea{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <form action="#">
+        <h1>Register</h1>
+        <label for="full-name">Full Name</label><input type="text" placeholder="Your Full Name" id="full-name">
+        <label for="user-name">User Name</label><input type="text" placeholder="User Name" id="user-name">
+        <label for="password">Password</label><input type="password" placeholder="Your Password.." id="password">
+        <label for="address">Address</label>
+        <select name="address" id="address">
+            <option value="China">China</option>
+            <option value="China">USA</option>
+            <option value="China">UK</option>
+            <option value="China">Canada</option>
+        </select>
+        <label for="suggestion">Suggestion</label>
+        <textarea name="suggestion" id="suggestion" cols="10" rows="10" placeholder="Write something..."></textarea>
+        <input type="submit" value="Sumbit">
+    </form>
+</body>
+</html>

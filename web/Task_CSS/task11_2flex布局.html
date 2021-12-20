@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            width: 50%;
+            height: 100vh;
+            margin: auto;
+            font-weight: bold;
+        }
+        header,footer {
+            line-height: 30px;
+            position: sticky;
+            top: 0;
+            background-color: #357bbf;
+            text-align: center;
+        }
+        section{
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+        section > div{
+            text-align: center;
+        }
+        .left{
+            flex: 0 1 auto;
+            min-width: 120px;
+            background-color: dodgerblue;
+        }
+        .middle{
+            flex: 1 1 auto;
+            background-color: #DCC48E;
+        }
+        .right{
+            flex: 0 1 auto;
+            min-width: 120px;
+            background-color: #16a085;
+        }
+        footer{
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <section>
+        <div class="left">左侧边栏</div>
+        <div class="middle">中间主体</div>
+        <div class="right">右侧边栏</div>
+    </section>
+    <footer>Footer</footer>
+</body>
+</html>

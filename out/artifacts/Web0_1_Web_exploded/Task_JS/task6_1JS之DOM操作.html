@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="news-top" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>JS</span><a class="active" href="">Some Link2</a></li>
+                    <li><span>CSS</span><a href="">Some Link3</a></li>
+                    <li><span>JS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+        <div id="news-normal" class="section">
+            <h3>Some title</h3>
+            <div class="content">
+                <ul>
+                    <li><span>HTML</span><a href="">Some Link1</a></li>
+                    <li><span>HTML</span><a href="">Some Link2</a></li>
+                    <li><span>JS</span><a class="active" href="#">Some Link3</a></li>
+                    <li><span>CSS</span><a href="">Some Link4</a></li>
+                </ul>
+            </div>
+            <img src="">
+            <p class="">Some Text</p>
+        </div>
+    </div>
+    <script>
+        console.log(getAllListItem())
+        function getAllListItem() {
+            return document.getElementsByTagName("li");
+            // 返回页面中所有li标签
+        }
+        console.log(findAllHtmlSpanInOneSection(1))
+        function findAllHtmlSpanInOneSection(sectionId) {
+            // 返回某个section下所有span中内容为HTML的span标签
+            const section = document.getElementsByClassName("section")[sectionId-1];//匹配section
+            let nodeSpan = [...document.getElementsByTagName("span")].filter(span => span.innerHTML === "HTML" );//匹配span内容为HTML的span标签
+            const nodeSpanMatch = [];//找到span父节点为某个section时，存放该span标签
+            for (let span of nodeSpan) {
+                let node = span;
+                while((node = node.parentNode))//span所有父节点索引
+                    if(Object.is(node,section))//匹配到section就压入
+                        nodeSpanMatch.push(span);
+            }
+            return nodeSpanMatch;
+
+            // 返回某个section下所有span中内容为HTML的span标签
+        }
+
+        console.log(findListItem(1,"JS"))
+        function findListItem(sectionId, spanCont) {
+            // 返回某个section下，所有所包含span内容为spanCont的li标签
+            const section = document.getElementsByClassName("section")[sectionId-1];
+            const nodeSpan = [...document.getElementsByTagName("span")].filter(span => span.innerHTML === spanCont );
+            const lisMatch = [];
+            for (let span of nodeSpan) {
+                let node = span;
+                let li;
+                while((node = node.parentNode)){
+                    if(node.tagName === "li".toUpperCase())//上一个函数的改装，父节点出现li标签就存储,匹配到section就压入
+                        li = node;
+                    if(Object.is(node,section))
+                        lisMatch.push(li);
+                }
+            }
+            return lisMatch;
+        }
+
+        console.log(getActiveLinkContent(1))
+        function getActiveLinkContent(sectionId) {
+            // 返回某个section下，class为active的链接中包含的文字内容
+            const section = document.getElementsByClassName("section")[sectionId-1];
+            const links = [...document.getElementsByClassName("active")].filter(item => item.tagName === "a".toUpperCase());
+            let arr = [];
+            for (const link of links) {
+                let node = link;
+                while((node = node.parentNode))
+                    if (Object.is(section,node))
+                        arr.push(link.innerHTML);
+            }
+            return arr.join("-");
+        }
+    </script>
+</body>
+</html>

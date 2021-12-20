@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+    <script>
+        /**
+         * ①Promise的then返回
+         * */
+        /*Promise.reject("错误").catch(()=>{
+                console.log("错误处理");
+                throw new Error("failure");
+                return 100;
+        }).then(
+            value => {
+                console.log(`成功处理2 ${value}`);
+            },
+            reason=>{
+                console.log(`错误处理2 ${reason}`);
+            }
+        );*/
+        /**
+         * ②同步任务->异步任务->微任务->宏任务
+         * */
+        /*let p1 = new Promise((resolve, reject) => {
+            resolve("fulfilled");
+        });
+        let p2;
+        setTimeout(()=>{
+            p2 = p1.then(
+                value=>{
+                    return Promise.reject("我真的错了啊");
+                },
+                reason => {
+                    console.log(444);
+                }).catch(err=>{
+                    console.log(err);
+                    return Promise.reject("这才是最后的p2");
+                }).catch();
+            console.log(p2)}
+            ,2000);
+        console.log(new Promise((resolve, reject) => {}));
+        setTimeout(()=>{
+            console.log(p1);
+            console.log(p2);
+        },3000);
+        console.dir(p1);
+        console.log(p2);*/
+        /**
+         * ③手写一个状态保存函数，Promise.allSettled()的反对版：Promise.allRejected()
+         * */
+        /*Promise.allRejected = function(arr){
+            let newArr = [];
+            arr.map((value)=>{
+               value.then(value1 => {
+                   newArr.push({
+                       status: "resolve",
+                       value: value1
+                   });
+               },reason => {
+                   newArr.push({
+                       status: "rejected",
+                       reason: reason
+                   });
+               });
+            });
+            return new Promise((resolve,reject)=>{
+                reject(newArr);
+            });
+        };
+        let p1 = new Promise((resolve, reject) => {
+            resolve("fulfilled");
+        });
+        let p2 = new Promise((resolve, reject) => {
+            reject("rejected");
+        });
+        console.log(Promise.allSettled([p1, p2]));
+        console.log(Promise.allRejected([p1, p2]));*/
+        /**
+         * ④Promise异步简单原理
+         * */
+        /*let kfc = new Promise((resolve, reject) => {
+            console.log("肯德基厨房开始做饭");
+            resolve("我是肯德基，你的餐已经做好了");
+        });
+        let dad = kfc.then(msg => {
+            console.log(`收到肯德基消息: ${msg}`);
+            return {
+                then(resolve) {
+                    setTimeout(() => {
+                        resolve("孩子，我吃了两秒了，不辣，你可以吃了");
+                    }, 2000);
+                }
+            };
+        });
+        let son = dad.then(msg => {
+            return new Promise((resolve, reject) => {
+                console.log(`收到爸爸消息: ${msg}`);
+                setTimeout(() => {
+                    resolve("妈妈，我和向军爸爸吃完饭了");
+                }, 2000);
+            });
+        });
+        let ma = son.then(msg => {
+            console.log(`收到孩子消息: ${msg},事情结束`);
+            return {
+                then(resolve){
+                    setTimeout(()=>{
+                        resolve("好的，我的娃，和你爸来找我一起回家吧");
+                    },3000);
+                }
+            };
+        });
+        let finish = ma.then(msg=>{
+            console.log(`妈妈回复：${msg},事情到此结束`);
+            });*/
+
+        /**
+         *⑤字节烂大街的Promise面试题
+         */
+        /*async function async1() {
+            console.log('async1 start');
+            await async2();
+            console.log('async1 end');
+        }
+
+        async function async2() {
+            console.log('async2');
+        }
+
+        console.log('script start');
+
+        setTimeout(function (){
+            console.log('setTimeout');
+        }, 0)
+
+        async1();
+
+        new Promise(function (resolve) {
+            console.log('promise1');
+            resolve();
+            console.log("???"); // 这一句是我自己加的，目的考察大家是否知道同步代码和微任务，迷惑大家resolve()后面是否还会执行
+        }).then(function() {
+            console.log('promise2');
+        })
+
+        console.log('script end');*/
+
+        /*let p1 = new Promise(resolve => resolve("good"));
+        let p2 = new Promise(resolve => resolve("good2"));
+        (async ()=>{
+            let p3 = await Promise.all([p1,p2]);
+            console.log(p3);
+        })()*/
+        async function hd(num) {
+            let res = await Promise.resolve().then(_ => {
+                let count = 0;
+                for (let i = 0; i < num; i++) {
+                    count += num--;
+                }
+                return count;
+            });
+            console.log(res);
+        }
+        hd(987654321);
+        console.log("后盾人");
+
+    </script>
+</body>
+</html>

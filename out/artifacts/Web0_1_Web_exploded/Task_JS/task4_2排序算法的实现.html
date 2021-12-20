@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--  默认升序  -->
+    <button>随机生成15个数的数组</button>
+    <button>使用冒泡排序</button>
+    <button>使用选择排序法</button>
+    <button>使用插入排序法</button>
+    <button>快速排序法</button>
+    <p id="showArray"></p>
+    <p id="showSortProcess"></p>
+    <script>
+        debugger
+        let arr = [];
+        document.querySelectorAll("button").forEach((btn,pref) => btn.addEventListener("click",()=>{
+            const sort = document.getElementById("showSortProcess");
+            switch(pref){
+                case 0:
+                    const random = [];
+                    for (let i = 0; i < 15; i++) {
+                        random.push(Math.ceil(Math.random()*100));
+                    }
+                    document.getElementById("showArray").innerHTML = "请对如下数字进行排序："+random.join(" ");
+                    arr = random;
+                    break;
+                case 1:
+                    sort.innerHTML = bubbleSort(arr);
+                    break;
+                case 2:
+                    sort.innerHTML = selectionSort(arr);
+                    break;
+                case 3:
+                    sort.innerHTML = insertionSort(arr);
+                    break;
+                case 4:
+                    sort.innerHTML =  quickSort(arr,0,arr.length-1).join(" ");
+                    break;
+            }
+        }))
+        function bubbleSort(arr){
+            //实现冒泡排序
+            let temp;
+            for (let i = 0; i < arr.length - 1; i++) {
+                for (let j = 0; j < arr.length - 1 - i; j++) {
+                    if(arr[j]>arr[j+1]){
+                        temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+                }
+            }
+            return arr.join(" ");
+        }
+        function selectionSort(arr){
+            //实现选择排序法
+            let temp;
+            for (let i = 0; i < arr.length - 1; i++) {
+                let minIndex = i;
+                for (let j = i + 1; j < arr.length; j++) {
+                    if(arr[j]<arr[minIndex])
+                        minIndex = j;
+                }
+                temp = arr[i];
+                arr[i] = arr[minIndex];
+                arr[minIndex] = temp;
+            }
+            return arr.join(" ");
+        }
+        function insertionSort(arr){
+            //实现插入排序法
+            let pref, current, temp;
+            for (let i = 0; i < arr.length - 1; i++) {
+                pref = i;
+                current = i + 1;
+                temp = arr[current];
+                while(pref >= 0 && temp < arr[pref]){
+                    arr[pref+1] = arr[pref];
+                    pref--;
+                }
+                arr[pref+1] = temp;
+            }
+            return arr.join(" ");
+        }
+        function quickSort(arr,left,right){
+            //实现快速排序法
+            let i = left, j = right;
+            let key = arr[i];
+            while(i < j){
+                while(i < j && arr[j] >= key )//等号是个小重点
+                    j--;
+                swap(arr,i,j);
+                while(i < j && arr[i] <= key)
+                    i++;
+                swap(arr,i,j);
+            }
+            if (i-1 > left ) arr = quickSort(arr,left,i-1);
+            if (right > j+1) arr = quickSort(arr,j+1,right);
+            return arr;
+        }
+        function swap(arr,i,j){
+            let temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+    </script>
+</body>
+</html>

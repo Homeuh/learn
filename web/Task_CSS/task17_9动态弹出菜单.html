@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="zip/css/font-awesome.css">
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background-color: black;
+            position: relative;
+            li{
+                background-color: #cd4a48;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                color: #ffffff;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 1.5em;
+                cursor: pointer;
+                transition-duration: 2s;
+                transition-delay: .3s;
+                transform-origin: 125px 125px;
+                transform: translate(-50%,-50%) scale(0);
+                each(range(9),{
+                    &:nth-of-type(@{value}){
+                        i{
+                            transform: rotate(-40deg*@value);
+                        }
+                    }
+                });
+            }
+            &::before{
+                content: "动感菜单";
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                background-color: #cd4a48;
+                position: absolute;
+                cursor: pointer;
+            }
+            &:hover li{
+                each(range(9),{
+                    &:nth-of-type(@{value}){
+                        transform: translate(-50%,-50%) scale(1) rotate(40deg*@value) ;
+                    }
+                });
+            }
+        }
+    </style>
+    <script src="zip/less.js"></script>
+</head>
+<body>
+    <ul>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+        <li><i class="fa fa-home" aria-hidden="true"></i></li>
+    </ul>
+</body>
+</html>

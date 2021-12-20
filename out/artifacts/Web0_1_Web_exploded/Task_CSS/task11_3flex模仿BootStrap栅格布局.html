@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{box-sizing: border-box}
+        body{
+            max-width: 980px;
+            margin: auto;
+        }
+        .BootStrap{
+            display: flex;
+            flex-wrap: wrap;
+            padding-right: 20px;
+            background-color: lightgray;
+        }
+        .BootStrap > *{
+            height: 50px;
+            margin-left: 20px;
+            margin-bottom: 2em;
+            border: 1px solid #999;
+            background-color: #DCC48E;
+        }
+        .column1{width:calc((6.25%*4) + (2.0833%*3));}
+        .column2{width:calc((6.25%*4) + (2.0833%*3));}
+        .column3{width:calc((6.25%*4) + (2.0833%*3));}
+        .column4{width:calc((6.25%*3) + (2.0833%*2));}
+        .column5{width:calc((6.25%*6) + (2.0833%*5));}
+        .column6{width:calc((6.25%*3) + (2.0833%*2));}
+        .column7{width:6.25%;}
+        .column8{width:6.25%;}
+        .column9{width:calc((6.25%*2) + (2.0833%));}
+        .column10{width:calc((6.25%*2) + (2.0833%));}
+        .column11{width:calc((6.25%*6) + (2.0833%*5));}
+        @media (max-width: 768px){
+            .column1{width:calc((5.47%*6) + (2.6%*5))}
+            .column2{width:calc((5.47%*6) + (2.6%*5))}
+            .column3{width:calc((5.47%*12) + (2.6%*11))}
+            .column4{width:calc((5.47%*3) + (2.6%*2))}
+            .column5{width:calc((5.47%*6) + (2.6%*5))}
+            .column6{width:calc((5.47%*3) + (2.6%*2))}
+            .column7{width:calc((5.47%*2) + (2.6%))}
+            .column8{width:calc((5.47%*2) + (2.6%))}
+            .column9{width:calc((5.47%*8) + (2.6%*7))}
+            .column10{width:calc((5.47%*3) + (2.6%*2))}
+            .column11{width:calc((5.47%*3) + (2.6%*2))}
+        }
+    </style>
+</head>
+<body>
+    <div class="BootStrap">
+        <div class="column1">1</div>
+        <div class="column2">2</div>
+        <div class="column3">3</div>
+        <div class="column4">4</div>
+        <div class="column5">5</div>
+        <div class="column6">6</div>
+        <div class="column7">7</div>
+        <div class="column8">8</div>
+        <div class="column9">9</div>
+        <div class="column10">10</div>
+        <div class="column11">11</div>
+    </div>
+</body>
+</html>

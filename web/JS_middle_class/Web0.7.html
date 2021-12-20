@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        let hd = {
+            "title": "后盾人",
+            "url": "houdunren.com",
+            "teacher": {
+                "name": "向军大叔",
+                "birth": {
+                    "year": "2000",
+                    "month":"09",
+                    "day":"06"
+                }
+            },
+            toJSON: function(){
+                for (const [key,value] of Object.entries(this)) {
+                    if(typeof value == "object"){
+                        this[key] = modefy(this[key]);
+                    }
+                }
+                return {
+                    title : this.title,
+                    url : this.url,
+                    teacher : this.teacher
+                }
+            }
+        }
+
+        function modefy(obj){
+            let cms ="";
+            for (const [key,value] of Object.entries(obj)) {
+                //console.log(obj);
+                cms +=  typeof value == "object" ? `${key}:` + modefy(obj[key]) : `${key}-${value} `;
+            }
+            return cms;
+        }
+
+        console.log(JSON.stringify(hd,['title','url']));
+        console.log(JSON.stringify(hd,(key,value)=>{
+            if(key == "url")
+                return value.substr(0,1).toUpperCase() + value.substr(1);
+            else return value;
+        },2));
+        console.log(JSON.stringify(hd,null,2));
+    </script>
+</body>
+</html>

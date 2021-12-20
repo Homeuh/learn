@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
+    <script>
+        function calculate(way){
+            let p = document.getElementById("result");
+            let first = document.getElementById("first-number").value*1;
+            let second = document.getElementById("second-number").value*1;
+            switch (way){
+                case "add":
+                    p.innerHTML = first + second;
+                    break;
+                case "minus":
+                    p.innerHTML = first - second;
+                    break;
+                case "times":
+                    p.innerHTML = first * second;
+                    break;
+                case "divide":
+                    p.innerHTML = first / second;
+                    break;
+                default:break;
+            }
+        }
+        const btns = document.querySelectorAll("button");
+        [...btns].forEach(btn => btn.onclick = ()=>{
+                let str = btn.id.match(/.*(?=-btn)/ig);
+                calculate(str[0]);
+        });
+        // console.log(null === undefined)
+    </script>
+</body>
+</html>

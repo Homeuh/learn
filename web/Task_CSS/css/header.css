@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+header {
+  border-bottom: 3px solid #16a085;
+}
+header nav {
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 1em 0;
+  display: flex;
+}
+header nav > a:first-child {
+  color: #16a085;
+  font-weight: bold;
+}
+header nav > a:first-child + label {
+  display: none;
+}
+header nav > a:first-child + label + input {
+  display: none;
+}
+header nav a {
+  text-decoration: none;
+  color: #141414;
+  padding-right: 1em;
+}
+header nav a:hover {
+  font-weight: bold;
+}
+header nav ul {
+  list-style-type: none;
+  display: flex;
+  margin-right: auto;
+}
+header nav .form a {
+  border: 1px solid #16a085;
+  border-radius: 5px;
+  text-align: center;
+  font-weight: bold;
+  padding-left: 1em;
+}
+header nav .form a:hover {
+  opacity: 0.8;
+}
+header nav .form a:first-child {
+  color: #16a085;
+}
+header nav .form a:last-child {
+  color: #ffffff;
+  background-color: #16a085;
+}
+/*# sourceMappingURL=header.css.map */

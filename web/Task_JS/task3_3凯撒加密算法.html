@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    <label>偏移:</label><input type="text" name="offset" size=5 value=3><br>
+    <label>明文:<label></label><input type="text" name="plain" size=50 value="This is a test."><br>
+        <label>密文:</label><input type="text" name="enc" size=50><br>
+        <input type="button" value="加密" onClick="encrypt()">&nbsp;
+        <input type="button" value="解密" onClick="decrypt()">
+</div>
+<script>
+    /* @param {number} offset
+    * @param {string} str
+    * @return {string}
+        */
+        const py = document.getElementsByName("offset")[0];
+        const mw = document.getElementsByName("plain")[0];
+        let enc = document.getElementsByName("enc")[0];
+        function encrypt(){
+            enc.value = mw.value.match(/[\S\s]/g).map(item => item.replace(/[A-Za-z]/g,()=>{
+                let ascii_mw = item.charCodeAt(0);
+                let ascii_py = parseInt(py.value) % 26;
+                if(/[a-z]/.test(item)){
+                    if(ascii_mw+ascii_py >122)
+                        ascii_mw = (ascii_mw + ascii_py ) % 122 + 96;
+                    else
+                        ascii_mw = ascii_mw + ascii_py;
+                    return String.fromCharCode(ascii_mw);
+                }else{
+                    if(ascii_mw+py.value*1 >90)
+                        ascii_mw = (ascii_mw + ascii_py) % 90 + 64;
+                    else
+                        ascii_mw = ascii_mw + ascii_py;
+                    return String.fromCharCode(ascii_mw)
+                }
+            })).join("");
+        }
+
+    /**
+     * @param {number} offset
+     * @param {string} str
+     * @return {string}
+     */
+    function decrypt(offset,str){
+        mw.value = enc.value.match(/[\S\s]/g).map(item => item.replace(/[A-Za-z]/g,()=>{
+            let ascii_mw = item.charCodeAt(0);
+            let ascii_py = parseInt(py.value) % 26;
+            if(/[a-z]/.test(item)){
+                if(ascii_mw-ascii_py < 97)
+                    ascii_mw = ascii_mw - 96 + 122 - ascii_py;
+                else
+                    ascii_mw = ascii_mw - ascii_py;
+                return String.fromCharCode(ascii_mw);
+            }else{
+                if(ascii_mw-ascii_py <65)
+                    ascii_mw = ascii_mw - 64 + 90 - ascii_py;
+                else
+                    ascii_mw = ascii_mw - ascii_py;
+                return String.fromCharCode(ascii_mw)
+            }
+        })).join("");
+    }
+</script>
+
+</body>
+</html>

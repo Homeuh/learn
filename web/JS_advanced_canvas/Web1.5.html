@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!-- 回调地狱经典 -->
+    <script>
+        class HD{
+            test(){
+                let funcArr = [this.request01,this.request02,this.request03,this.request04];
+                let d;
+                for (let i = funcArr.length-1; i > 0; i--) {
+                     console.log(this);
+                    if(d){
+                        let e = d;
+                        d = data => funcArr[i-1](data, e);
+                    }
+                    else{
+                        d = data => funcArr[i-1](data,data => funcArr[i](data));
+                    }
+                }
+                d(6666);
+            }
+            // queryData(...func){
+            //     let  d;
+            //     let temp,temp2;
+            //     let flag = false;
+            //     debugger
+            //     for (let i = func.length-1; i > 0; i--) {
+            //         console.log(d);
+            //         if(d){
+            //             if (!flag){
+            //                 flag = true;
+            //                 temp = data => func[i-1](data,temp2);
+            //             }
+            //             d = data => func[i-1](data,temp);
+            //         }
+            //         else{
+            //             d = data => func[i-1](data,data => func[i](data));
+            //             temp = data => func[i-1](data,data => func[i](data));
+            //             temp2 = data => func[i-1](data,data => func[i](data));
+            //         }
+            //     }
+            //     d(6666);
+            // }
+            request01(data,request02){
+                alert("request01--->" + data);
+                let url = "01";
+                let param = {
+                    name : "01"
+                };
+                debugger
+                setTimeout(()=>{
+                    request02(222);
+                },3000);
+            }
+            request02(data,request03){
+                alert("request02--->" +  data);
+                alert("request02--->" + request03);
+                let url = "01";
+                let param = {
+                    name : "01"
+                };
+                setTimeout(()=>{
+                    request03(333);
+                },4000);
+            }
+            request03(data,request04){
+                alert("request03--->" + data);
+                alert(arguments.length);
+                alert("request03--->" + request04);
+                let url = "01";
+                let param = {
+                    name : "01"
+                };
+                request04(444);
+            }
+            request04(data,next){
+                alert("request04--->" + data);
+                let url = "01";
+                let param = {
+                    name : "01"
+                };
+            }
+        }
+        let hd = new HD();
+        hd.test();
+    </script>
+</body>
+</html>

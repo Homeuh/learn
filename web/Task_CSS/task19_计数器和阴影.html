@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            >label:nth-of-type(1),>label:nth-of-type(2){
+                content: "";
+                display: block;
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                z-index: 1;
+                border: 2px solid #ffffff;
+                cursor: pointer;
+            }
+            >label:nth-of-type(1){
+                transform: translate(-270px,-170px);
+                background-color: #8e44ad;
+            }
+            >label:nth-of-type(2){
+                transform: translate(-220px,-170px);
+                background-color: #938e8c;
+            }
+            //同等优先级渲染后者优先，所以小bug暂时不解决了
+            #cb1:checked ~ main{
+                background-color: #8e44ad;
+                div::before{color: white;}
+                div::after{color: white;opacity: 0.8}
+            }
+            #cb2:checked ~ main{
+                background-color: #938e8c;
+                div::before{color: white;}
+                div::after{color: white;opacity: 0.5}
+            }
+        }
+        main{
+            counter-reset: section;
+            width: 600px;
+            height: 400px;
+            background-color: #357bbf;
+            padding: 55px 100px;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            div{
+                counter-increment: section;
+                width: 50px;
+                height: 50px;
+                margin-right: 20px;
+                margin-bottom: 10px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(255,255,255,0.3);
+                position: relative;
+            }
+            div:nth-child(6n){margin-right: 0}
+            //@letter: "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z";
+            each(range(26),{
+                div:nth-of-type(@{value}){
+                    &::before{
+                        content: counter(section,upper-alpha);
+                        width: 25px;
+                        color: #C1437A;
+                        font-size: 2rem;
+                        position: relative;
+                        left: 7px;
+                        top: 5px;
+                    }
+                    &::after{
+                        content: counter(section,lower-alpha);
+                        width: 25px;
+                        height: 25px;
+                        color: #DCC470;
+                        position: absolute;
+                        right: 0;
+                        bottom: 0;
+                        text-align: center;
+                    }
+                }
+            });
+            div:nth-of-type(13),div:nth-of-type(23){
+                &::before{left: 5px}
+                &::after{text-align: right}
+            }
+        }
+    </style>
+    <script src="zip/less.js"></script>
+</head>
+<body>
+    <label for="cb1"></label><input type="checkbox" id="cb1" hidden>
+    <label for="cb2"></label><input type="checkbox" id="cb2" hidden>
+    <main>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </main>
+</body>
+</html>

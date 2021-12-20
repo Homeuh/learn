@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <label>请输需要判断的水仙花数(三位数):<input type="text" ></label>
+    <br>
+    <button>开始判断</button>
+    <script>
+        function  numDaffodils() {
+            // 判断是否为水仙花数
+            let input = document.querySelector("input").value;
+            let arr = input.split("");
+            const result = arr.reduce((prev,value)=>{
+                return prev + Math.pow(value,arr.length)
+            },0)
+            result == input? alert("是水仙花数"):alert("不是水仙花数")
+        }
+        let btn = document.querySelector("button");
+        btn.addEventListener("click",numDaffodils);
+    </script>
+</body>
+</html>

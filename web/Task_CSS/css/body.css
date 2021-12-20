@@ -1,0 +1,131 @@
+main .row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+main .row .card {
+  margin-top: 2rem;
+}
+main .row .card > * {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+  font-size: 14px;
+  color: #141414;
+}
+main .row .card .card-header h3 {
+  font-weight: normal;
+}
+main .row .card .card-header h3 i {
+  margin-right: 0.3rem;
+}
+main .row .card .card-body {
+  border-radius: 0;
+}
+main .row .card .card-body ul {
+  list-style-type: none;
+}
+main .row .card .card-body ul li {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+  border-bottom: 1px solid lightgray;
+}
+main .row .card .card-body ul li a {
+  text-decoration: none;
+  color: #141414;
+}
+main .row .card .card-body ul li time i {
+  margin-right: 1rem;
+}
+main .row .card .card-footer {
+  overflow: hidden;
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+main .row .card .card-footer ul {
+  list-style-type: none;
+}
+main .row .card .card-footer ul li {
+  float: left;
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  margin-left: -1px;
+}
+main .row .card .card-footer ul li a {
+  text-decoration: none;
+  color: #141414;
+}
+main .row .card .card-footer ul li:first-child {
+  border-radius: 5px 0 0 5px;
+}
+main .row .card .card-footer ul li:last-child {
+  border-radius: 0 5px 5px 0;
+}
+main .row .card .card-footer ul li:nth-of-type(2),
+main .row .card .card-footer ul li:hover {
+  background: #16a085;
+}
+main .row .card .card-footer ul li:nth-of-type(2) a,
+main .row .card .card-footer ul li:hover a {
+  color: #ffffff;
+}
+main .row .card .card-footer > a {
+  border-radius: 3px;
+  text-decoration: none;
+  padding: 0.5rem;
+  margin: 0.3rem 1rem 0 0;
+}
+main .row .card .card-footer > a i {
+  margin-right: 0.2rem;
+}
+main .row .card .card-footer > a:first-child {
+  border: 1px solid #16a085;
+  color: #16a085;
+}
+main .row .card .card-footer > a:last-child {
+  border: 1px solid #cd4a48;
+  color: #cd4a48;
+}
+.col-1 {
+  grid-column: span 1;
+}
+.col-2 {
+  grid-column: span 2;
+}
+.col-3 {
+  grid-column: span 3;
+}
+.col-4 {
+  grid-column: span 4;
+}
+.col-5 {
+  grid-column: span 5;
+}
+.col-6 {
+  grid-column: span 6;
+}
+.col-7 {
+  grid-column: span 7;
+}
+.col-8 {
+  grid-column: span 8;
+}
+.col-9 {
+  grid-column: span 9;
+}
+.col-10 {
+  grid-column: span 10;
+}
+.col-11 {
+  grid-column: span 11;
+}
+.col-12 {
+  grid-column: span 12;
+}
+/*# sourceMappingURL=body.css.map */

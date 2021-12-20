@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: content-box;
+        }
+        body {
+            padding: 30px;
+        }
+        .slide {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); */
+        }
+        .slide dt {
+            height: 30px;
+            background: #34495e;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            cursor: pointer;
+        }
+        .slide dt:first-of-type {
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .slide dd {
+            height: 100px;
+            background: #f1c40f;
+            overflow: hidden;
+        }
+        .slide dd div {
+            padding: 10px;
+        }
+        .slide dd:last-of-type {
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="slide s1">
+    <dt>后盾人</dt>
+    <dd>
+        <div>houdunren.com</div>
+    </dd>
+    <dt>后盾人</dt>
+    <dd>
+        <div>hdcms.com</div>
+    </dd>
+    <dt>后盾人</dt>
+    <dd>
+        <div>hdcms.com</div>
+    </dd>
+</div>
+    <script>
+        class Animation{
+            constructor(el){
+                this.el = el;
+                this.defaultHeight = this.height;
+            }
+            get height(){
+                return window.getComputedStyle(this.el).height.slice(0,-2)*1;
+            }
+            set height(height){
+                this.el.style.height = height+"px";
+            }
+            hide(callback){
+                let id = setInterval(()=>{
+                    if(this.height<=0) {
+                        clearInterval(id);
+                        callback && callback();
+                        return;
+                    }
+                    this.height--;
+                },5);
+
+            }
+            show(callback){
+                let id = setInterval(()=>{
+                    if(this.height>=this.defaultHeight) {
+                        clearInterval(id);
+                        callback && callback();
+                        return;
+                    }
+                    this.height++;
+                },5);
+            }
+        }
+        class Slide{
+            constructor(el){
+                this.el = document.querySelector(".el");
+                this.links = document.querySelectorAll("dt");
+                this.panels = [...document.querySelectorAll("dd")].map(item=>new Panel(item));//重要的一步:将标签压入对象才能使用hide()方法
+                this.bind();
+            }
+            bind(){
+                this.links.forEach((item,i) =>{
+                    item.addEventListener("click",()=>{
+                        this.action(i);
+                    })
+                })
+            }
+            action(i){
+                Panel.hideAll(Panel.filter(this.panels,i),()=>{this.panels[i].show()});
+                //等价于if(Panel.hideAll(Panel.filter(this.panels,i)))this.panels[i].show();
+                //即回调函数不会立即执行,当有事件触发或者在hideAll方法中被调用时才会触发。JS的异步原理
+            }
+        }
+        class Panel extends Animation{
+            static num = 0;
+            static hideAll(items,callback){
+                if(Panel.num > 0)return;
+                items.forEach(item=>{
+                    Panel.num++;
+                   item.hide(()=>Panel.num--);
+                });
+                callback && callback();
+            }
+            static filter(items,i){
+                return items.filter((item,index)=>index!=i);
+            }
+        }
+        let hd = new Slide(".s1");
+    </script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*圣杯布局写法①*/
+        #container{
+            overflow: hidden;
+            text-align: center;
+        }
+        #center {
+            box-sizing: border-box;
+            padding: 0 190px;
+            background-color: #16a085;
+            float: left;
+            width: 100%;
+        }
+        #left {
+            background-color: #f5e327;
+            float: left;
+            width: 190px;
+            margin-left: -100%;
+        }
+        #right {
+            background-color: #d45d5c;
+            float: left;
+            width: 190px;
+            margin-left: -190px;
+        }
+        /*写法②：*/
+        /*#container{
+            padding: 0 190px;
+            overflow: hidden;
+            text-align: center;
+        }
+        #center {
+            background-color: #16a085;
+            float: left;
+            width: 100%;
+        }
+        #left {
+            background-color: #f5e327;
+            float: left;
+            width: 190px;
+            margin-left: -100%;
+            position:relative;
+            left: -190px;
+        }
+        #right {
+            background-color: #d45d5c;
+            float: left;
+            width: 190px;
+            margin-left: -190px;
+            position:relative;
+            right: -190px;
+        }*/
+        /*写法③*/
+        /*#container {
+          padding-left: 200px;
+          padding-right: 150px;
+        }
+
+        #container .column {
+          float: left;
+        }
+
+        #center {
+            background-color: #16a085;
+          width: 100%;
+        }
+
+        #left {
+            background-color: #f5e327;
+          width: 200px;
+          margin-left: calc(-100% - 200px);
+        }
+
+        #container #right {
+            background-color: #d45d5c;
+          width: 150px;
+            margin-right: -150px;//观察浮动前的位置直接margin即可，不用像方法②一样用定位
+        }
+
+        #footer {
+          clear: both;
+        }*/
+    </style>
+</head>
+<body>
+<div id="header"></div>
+<div id="container">
+    <div id="center" class="column">center</div>
+    <div id="left" class="column">left</div>
+    <div id="right" class="column">right</div>
+</div>
+<div id="footer"></div>
+</body>
+</html>

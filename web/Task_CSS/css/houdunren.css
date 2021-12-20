@@ -1,0 +1,6 @@
+@import "header.css";
+@import "body.css";
+@import "footer.css";
+@import url("big.css") screen and (max-width: 992px);
+@import url("medium.css") screen and (max-width: 768px);
+@import url("small.css") screen and (max-width: 600px);

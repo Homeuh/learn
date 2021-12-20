@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button style="position: absolute;background-color: antiquewhite"
+        message="后盾人">button</button>
+    <script>
+        let btns = document.querySelectorAll("button");
+        btns.forEach(function(item) {
+            let bind = false;
+            item.addEventListener("click", function() {
+                if (!bind) {
+                    let left = 1;
+                    bind = setInterval(function() {
+                        item.style.left = left++ + "px";
+                    }, 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

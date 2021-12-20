@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            width: 100px;
+            height: 60px;
+            background-color: #357bbf;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 1.5em;
+            font-weight: bold;
+            animation-name: CSS;
+            animation-duration: 3s;
+            animation-delay: .5s;
+            animation-timing-function: cubic-bezier(.42,0,.75,.75);
+            animation-fill-mode: forwards;
+        }
+        @keyframes CSS {
+            25% {
+                transform: rotate(30deg);
+                background-color: #27ae80;
+            }
+            50% {
+                transform: translateX(600px);
+                background-color: #97DB9A;
+            }
+            100% {
+                transform: translateX(0px) rotate(-360deg) ;
+                background-color: #357bbf;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div>CSS</div>
+</body>
+</html>

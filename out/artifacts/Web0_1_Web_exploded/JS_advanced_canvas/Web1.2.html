@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<Button class="btn">点击</Button>
+<body>
+
+    <script type = "module">
+        import {site,show as go} from "./houdunren.js"
+        console.log(site);
+        go();
+        let btn = document.querySelector(".btn");
+        btn.addEventListener("click",()=>{
+            import("./index.js").then(module=>{
+                module.houdunren.show();
+            });
+        });
+        import * as api from "./index.js";
+        // api.houdunren.default.go();
+    </script>
+</body>
+</html>

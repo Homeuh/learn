@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        main{
+            width: 400px;
+            height: 400px;
+            border: 3px solid white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul{
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        ul li{
+            margin: 1rem;
+            color: #ffffff;
+        }
+        ul li strong{
+            background-color: #97DB9A;
+            padding: 1rem 1.5rem ;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        ul li strong:hover+div {
+            transform: scaleY(1);
+        }
+        ul li div{
+            margin-top: 1rem;
+            background-color: #C1437A;
+            display: flex;
+            flex-direction: column;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: 1s;
+        }
+        ul li div a{
+            padding: .5rem;
+            text-decoration: none;
+            color: #ffffff;
+            border-bottom: 1px solid white;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <ul>
+            <li>
+                <strong>video</strong>
+                <div>
+                    <a href="">html</a>
+                    <a href="">css</a>
+                    <a href="">javascript</a>
+                </div>
+            </li>
+            <li>
+                <strong>song</strong>
+                <div>
+                    <a href="">青花瓷</a>
+                    <a href="">七里香</a>
+                    <a href="">暗号</a>
+                </div>
+            </li>
+        </ul>
+    </main>
+</body>
+</html>

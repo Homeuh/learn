@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="zip/vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">{{name}}</div>
+    <div id="app1" v-bind:title="message">{{name}}</div>
+    <div id="app2" v-if="seen">{{name}}</div>
+    <div id="app3">
+        {{name}}
+        <ul>
+            <li v-for="li in lists">
+                {{li.text}}
+            </li>
+        </ul>
+    </div>
+    <div id="app4">
+        <p>{{name}}</p>
+        <button v-on:click="reverseName">反转名字</button>
+    </div>
+    <div id="app5">
+        <p>{{name}}</p>
+        <input type="text" v-model="name"/>
+    </div>
+    <div id="app6">
+        <p>Using mustaches: {{ rawHtml }}</p>
+        <p>Using v-html directive: <div v-html="rawHtml">就算有内容也会被全部吃掉</div></p>
+    </div>
+    <div id="app7">
+        <ul>
+            <list-item v-for="li in lists"
+                       :key="li.id"
+                       :li="li"></list-item>
+        </ul>
+    </div>
+    <div id="app8">
+        <my-list v-for="post in posts"
+                :key="post.id"
+                :li="post"></my-list>
+    </div>
+    <script>
+        let app = new Vue({
+            el:"#app",
+            data:{
+                name:"app"
+            }
+        });
+        let app1 = new Vue({
+            el:"#app1",
+            data:{
+                name:"app1",
+                message: '页面加载于 ' + new Date().toLocaleString()
+            }
+        });
+        let app2 = new Vue({
+            el:"#app2",
+            data:{
+                name:"app2",
+                seen:"true"
+            }
+        });
+        let app3 = new Vue({
+            el:"#app3",
+            data:{
+                name:"app3",
+                lists:[
+                    { text: "学习HTML" },
+                    { text: "学习CSS" },
+                    { text: "学习JavaScript" }
+                ]
+            }
+        });
+        let app4 = new Vue({
+            el:"#app4",
+            data:{
+                name:"这是正向的app4",
+            },
+            methods : {
+                reverseName : function(){this.name = this.name.split("").reverse().join("");
+                }
+            }
+        });
+        let app5 = new Vue({
+            el:"#app5",
+            data:{
+                name:"app5"
+            }
+        });
+        let app6 = new Vue({
+            el:"#app6",
+            data:{
+                name:"app6",
+                rawHtml:"<span style=\"color: red\">This should be red</span>"
+            }
+        });
+        //局部组件注册
+        let app7 = new Vue({
+            el:"#app7",
+            data:{
+                lists: [
+                    { id: 1,title: "蔬菜名称",content: "白菜，胡萝卜，西红柿",},
+                    { id: 2,title: "水果名称",content: "苹果，香蕉，西瓜",},
+                    { id: 3,title: "职业名称",content: "产品经理，总经理，董事长",},
+                ]
+            },
+            components : {
+                "list-item": {
+                    props: ["li"],
+                    template:`<li>
+                    <h2>{{li.title}}</h2>
+                    <p>{{li.content}}</p>
+                    </li>`
+                }
+            }
+        })
+        /*全局组件注册:
+               全局注册的组件可以用在其被注册之后的任何 (通过 new Vue) 新创建的 Vue 根实例，也包括其组件树中的所有子组件的模板中。
+               也就是说:全局注册的组件在其注册之前已经实例化的Vue对象无法获取该组件,
+               简单的说就是: 下面全局注册的组件和Vue实例app8不能调换位置，调换位置就获取不到my-list组件
+           */
+        Vue.component("my-list",{
+            props: ["li"],
+            template: `<ul>
+            <li>
+              <h2>{{li.author}}</h2>
+              <p>{{li.book}}</p>
+            </li>
+            </ul>`
+        })
+        let app8 = new Vue({
+            el:"#app8",
+            data: {
+                posts: [
+                    { id: 1,author: "张三",book: "一千零一夜",},
+                    { id: 2,author: "李四",book: "数据结构与算法",},
+                    { id: 3,author: "王五",book: "操作系统与Linus",},
+                ]
+            }
+        });
+    </script>
+</body>
+</html>

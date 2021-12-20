@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="list-example">
+        <form @submit.prevent="add">
+            <label>
+                <input type="text" placeholder="请输入列表项" v-model="next_content">
+            </label>
+            <input type="submit" value="ADD">
+        </form>
+        <ul>
+            <li is="list-item"
+                v-for="(li,index) in lists"
+                :key="li.id"
+                :li="li"
+                @remove="remove(index)"></li>
+        </ul>
+    </div>
+    <script>
+        Vue.component("list-item",{
+            props:["li"],
+            template:`<li>
+                          {{li.id}}-{{li.content}}
+                          <button @click="$emit('remove')">Remove</button>
+                      </li>`
+        })
+        new Vue({
+            el:"#list-example",
+            data:{
+                lists:[
+                    { id: 0, content: "爸爸"},
+                    { id: 1, content: "妈妈"},
+                    { id: 2, content: "姐姐"}
+                ],
+                next_id: 3,
+                next_content: ""
+            },
+            methods:{
+                add : function(){
+                    this.lists.push({
+                        id: this.next_id++,
+                        content: this.next_content
+                    })
+                },
+                remove : function(index){
+                    this.lists.splice(index,1);
+                    console.log("删除成功");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

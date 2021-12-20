@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <label>请输入文本:</label><input  type="text"/>
+    <button onclick="generateTypeEffect()">生成打字效果</button>
+    <h2 id="showText"></h2>
+    <script>
+        function generateTypeEffect () {
+            const input = document.querySelector("input").value;
+            const h2 = document.getElementById("showText");
+            for (let i = 0; i < input.length; i++) {
+                setTimeout(()=>{
+                    let print = input.slice(0,i+1);
+                    h2.innerHTML = print;
+                },1000+100*i)
+            }
+        }
+    </script>
+</body>
+</html>

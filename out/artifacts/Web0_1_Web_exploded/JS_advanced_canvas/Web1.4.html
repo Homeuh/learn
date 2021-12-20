@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        class HD{
+            static PENDING = "pending";
+            static RESOLVE = "fulfilled";
+            static REJECT = "rejected";
+            static IDENTIFIER = true;
+            constructor(executer) {
+                this.status = HD.PENDING;
+                this.value = null;
+                this.callback = [];
+                try{
+                    executer(this.resolve.bind(this),this.reject.bind(this));
+                }
+                catch (e) {
+                    HD.IDENTIFIER = false;
+                    this.reject(e);
+                }
+            }
+            resolve(value){
+                if(this.status==HD.PENDING){
+                    this.status = HD.RESOLVE;
+                    this.value = value;
+                    setTimeout(() => {
+                        this.callback.map(callback =>{
+                            callback.onFulfilled(this.value);
+                        });
+                    });
+                }
+            }
+            reject(value){
+                if(this.status==HD.PENDING){
+                    this.status = HD.REJECT;
+                    this.value = value;
+                    setTimeout(() => {
+                        this.callback.map(callback =>{
+                            callback.onRejected(this.value);
+                        });
+                    })
+                }
+                if(!HD.IDENTIFIER){
+                    this.status = HD.REJECT;
+                    this.value = value;
+                    HD.IDENTIFIER = true;
+                }
+            }
+            then(onFulfilled,onRejected){
+                if(typeof onFulfilled != "function")
+                    onFulfilled = () => this.value;
+                if(typeof onRejected != "function")
+                    onRejected = () => {throw new Error(this.value);};//如果使用默认值函数，抛错穿透打印结果会多出Error字符串
+                //因为每次都保留了上一次的抛错结果Error:?
+                let promise = new HD((resolve,reject)=>{
+                    // console.log(this);//从第一个promise开始打印
+                    if(this.status == HD.PENDING){
+                        // console.log(this);
+                        this.callback.push({
+                            onFulfilled:value => {
+                                let result;
+                                try {
+                                    result = onFulfilled(value);//闭包特性
+                                    this.parse(promise, result, resolve, reject);//函数封装代码节省
+                                } catch (e) {
+                                    HD.IDENTIFIER = false;
+                                    reject(e);
+                                }finally{
+                                    if(promise == result){
+                                        throw new Error("不能自身回调会进入死循环");
+                                    }
+                                }
+                            },
+                            onRejected:value => {
+                                let result;
+                                try {
+                                    result = onRejected(value);
+                                    this.parse(promise, result, resolve, reject);
+                                } catch (e) {
+                                    HD.IDENTIFIER = false;
+                                    reject(e);
+                                }finally{
+                                    if(promise == result){
+                                        throw new Error("不能自身回调会进入死循环");
+                                    }
+                                }
+                            }
+                        });
+                    }
+                    if(this.status == HD.RESOLVE){
+                        // console.log(this);
+                        //微任务压入，同步任务先走，所以设置定时器
+                        setTimeout(()=> {
+                            let result
+                            try {
+                                result = onFulfilled(this.value);
+                                this.parse(promise, result, resolve, reject);
+                            } catch (e) {
+                                HD.IDENTIFIER = false;
+                                reject(e);
+                            }finally{
+                                if(promise == result){
+                                    throw new Error("不能自身回调会进入死循环");
+                                }
+                            }
+                        });
+                    }
+                    if(this.status == HD.REJECT){
+                        // console.log(this);
+                        setTimeout(()=>{
+                            let result;
+                            try{
+                                result = onRejected(this.value);
+                                this.parse(promise,result,resolve,reject);
+                                // let result = func(value);//此处为实参,状态回调函数处理后返回值传递给下一个then
+                                // if(result instanceof HD){
+                                //     result.then(resolve,reject);//返回新的promise,内部状态改变递归回调onFulfilled(this.value)->神来之笔
+                                //                                 //相当于then内部进入一个then，赋值回调引用用于改变同步then状态
+                                // }
+                                // else {
+                                //     resolve(result);
+                                // }
+                            }catch (e) {
+                                HD.IDENTIFIER = false;
+                                reject(e);
+                            }finally{
+                                if(promise == result){
+                                    throw new Error("不能自身回调会进入死循环");
+                                }
+                            }
+                        });
+                    }
+                });
+                return promise;
+            }
+            parse(promise,result,resolve,reject){
+                //只能封装try{}，防止then()的onRejected()抛出异常不执行
+                if(result instanceof HD){
+                    //打印result的value指向，其中then的状态回调引用在其中发生改变
+                    result.then(resolve,reject);//.then(value=>console.log(value));
+                }else{
+                    resolve(result);
+                }
+            }
+            catch(onRejected){
+                return this.then(null,reason=>{
+                    console.log(reason);
+                    onRejected(reason);
+                })
+            }
+            static resolve(value){
+                if(value instanceof HD)
+                    return value;
+                return new HD((resolve,reject)=>{
+                    resolve(value);
+                });
+            }
+            static reject(value){
+                return new HD((resolve,reject)=>{
+                    reject(value);
+                });
+            }
+            static all(promises){
+                let values = [];
+                return new HD((resolve,reject)=>{
+                    setTimeout(()=>{
+                        promises.forEach(promise => {
+                            promise.then(value=>{
+                                values.push(value);
+                                if(values.length == promises.length){
+                                    resolve(values);
+                                }
+                            },reason=>{
+                                reject(reason);
+                            });
+                        });
+                    });
+                });
+            }
+            static race(promises){
+                return new HD((resolve,reject)=>{
+                    promises.map(promise=>{
+                        promise.then(value => {
+                            resolve(value);
+                        },reason => {
+                            reject(reason);
+                        });
+                    });
+                });
+            }
+        }
+        /*let hd = new HD((resolve,reject)=>{
+            console.log(1);
+            // resolve();
+            reject();
+            // setTimeout(() => {
+            //     console.log(3)
+            //     resolve("解决");
+            //     // reject("失败");
+            //     console.log(4);
+            // },3000);
+        })
+        .then(null,reason => new HD((resolve,reject) => resolve("成功then")))
+        .then(value => {console.log("success:"+value);},reason => console.log("error:"+reason));
+        console.log(2);*/
+        // let hd = new HD((resolve,reject)=>{
+        //     resolve("后盾人");
+        // });
+        // let p = hd.then(value =>{return p;});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: #34495e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            width: 200px;
+            height: 50px;
+            border: 2px solid #DCC470;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        div a{
+            text-decoration: none;
+            color: white;
+        }
+        div::after{
+            content: "";
+            width: 0;
+            height: 100%;
+            background-color: #DCC470;
+            position: absolute;
+            z-index: -1;
+            transform: skewX(-45deg);
+            transition: 1s;
+        }
+        div:hover::after{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="btn">
+        <a href="">houdunren</a>
+    </div>
+</body>
+</html>

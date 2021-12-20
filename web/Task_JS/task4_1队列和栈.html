@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+
+    <script>
+        //栈是一样的，这里就没写，都是对数组方法的unshift()、shift()、push()、pop()的使用而已
+        let queue = ["apple", "pear"];
+        const btns = document.querySelectorAll("button");
+        btns.forEach((btn,index) => btn.addEventListener("click",()=>{
+            const p = document.querySelector("p");
+            const input = document.querySelector("input");
+            switch (index) {
+                case 0:
+                    if(input.value)queue.unshift(input.value);
+                    p.innerHTML = queue.join("->");
+                    break;
+                case 1:
+                    if(queue.includes(input.value)){
+                        queue.splice(queue.indexOf(input.value),1);
+                    }
+                    p.innerHTML = queue.join("->");
+                    break;
+                case 2:
+                    p.innerHTML = "队头元素为:" + queue[queue.length-1];
+                    break;
+                case 3:
+                    if(!queue.length)
+                        p.innerHTML = "队列已空"
+                    else
+                        p.innerHTML = "队列不为空"
+                    break;
+                default:break;
+            }
+        }))
+    </script>
+</body>
+</html>

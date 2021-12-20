@@ -1,0 +1,66 @@
+header{
+    nav{
+        flex-flow: row wrap;
+        padding-bottom: .3rem;
+        ul , .form{
+            display: none;
+            width: 100%;
+            flex-flow: column;
+        }
+        ul li{
+            margin-bottom: .3rem;
+        }
+        >a:first-child{
+            margin-right: auto;
+            margin-bottom: .5rem;
+            &+label{
+                display: block;
+                border: 1px solid lightgray;
+                border-radius: 5px;
+                padding: 0 .3em ;
+                cursor: pointer;
+                &+input:checked{
+                    & + ul, & ~ .form{
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
+.col-big-1{
+    grid-column: span 1;
+}
+.col-big-2{
+    grid-column: span 2;
+}
+.col-big-3{
+    grid-column: span 3;
+}
+.col-big-4{
+    grid-column: span 4;
+}
+.col-big-5{
+    grid-column: span 5;
+}
+.col-big-6{
+    grid-column: span 6;
+}
+.col-big-7{
+    grid-column: span 7;
+}
+.col-big-8{
+    grid-column: span 8;
+}
+.col-big-9{
+    grid-column: span 9;
+}
+.col-big-10{
+    grid-column: span 10;
+}
+.col-big-11{
+    grid-column: span 11;
+}
+.col-big-12{
+    grid-column: span 12;
+}

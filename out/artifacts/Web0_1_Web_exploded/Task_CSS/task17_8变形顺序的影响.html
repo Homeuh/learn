@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        article {
+            width: 200px;
+            height: 200px;
+            border: solid 2px #ddd;
+            position: relative;
+            background: #34495e;
+        }
+        article div {
+            width: 5px;
+            height: 100px;
+            background: #000;
+            transition: 2s;
+            position: absolute;
+            transform-origin: top left;
+            transform: rotate(0deg) translate(-50%, -50%);
+            background-color: #f1c40f;
+        }
+        article::after {
+            content: 'houdunren.com@向军大叔';
+            width: 100%;
+            color: #f3f3f3;
+            font-size: 12px;
+            position: absolute;
+            bottom: 5px;
+            text-align: center;
+        }
+        article:hover div {
+            transform: rotate(360deg) translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+<article>
+    <div></div>
+</article>
+</body>
+</html>

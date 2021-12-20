@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/less">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        div{
+            width: 200px;
+            height: 50px;
+            padding-left: 1rem;
+            line-height: 50px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .5s;
+        }
+        div:first-child{
+            border-radius: 1rem 1rem 0 0;
+        }
+        div:last-child{
+            border-radius: 0 0 1rem 1rem;
+        }
+        @color: #f5e327,#d2994f,#cd4a48,#700358;
+        each(range(4),{
+            div:nth-child(@{value}){
+                color: white;
+                background-color: extract(@color,@value);
+            }
+        });
+        div:hover{
+            height: 60px;
+            line-height: 60px;
+            padding-left: 2rem;
+            color: #357bbf;
+        }
+    </style>
+    <script src="zip/less.js"></script>
+</head>
+<body>
+    <div>home</div>
+    <div>blog</div>
+    <div>article</div>
+    <div>contact me</div>
+</body>
+</html>
