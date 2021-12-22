@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="name"></h1>
+<h1 id="age"></h1>
+<script>
+    let vue = {
+        name: "张三",
+        age: 18
+    }
+    let name = document.getElementById("name");
+    let age = document.getElementById("age");
+    name.innerHTML = vue.name;
+    age.innerHTML = vue.age;
+
+    //数据劫持
+    Object.keys(vue).forEach(key =>{
+        let value = vue[key];
+        Object.defineProperty(vue, key, {
+            set(newValue){
+                value = newValue;
+                depName.notify()
+            },
+            get(){
+                return value
+            }
+        })
+    })
+    //订阅者
+    class Watch{
+        constructor(key) {
+            this.key = key
+        }
+        update(){
+            document.getElementById(this.key).innerHTML = vue[this.key] + "update"
+        }
+    }
+    //发布者
+    class Dep{
+        constructor() {
+            this.sub = [];
+        }
+        addSub(watch){
+            this.sub.push(watch)
+        }
+        notify(){
+            this.sub.forEach(watch => watch.update())
+        }
+    }
+    //模拟实例初始化时，订阅数据变化，添加到属性唯一发布者里
+    const watchName = new Watch("name");
+    const depName = new Dep();
+    depName.addSub(watchName)
+</script>
+</body>
+</html>

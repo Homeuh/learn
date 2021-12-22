@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle,#95a5a6,#34495e);
+        }
+        .radar{
+            width: 384px;
+            height: 384px;
+            background: repeating-radial-gradient(circle farthest-side at center, transparent 0px,transparent 30px, #3eaf7c 30px, #3eaf7c 32px),
+                        linear-gradient(0deg,transparent 49.75%, #3eaf7c 49.75%,#3eaf7c 50.25%,transparent 50.25%),
+                        linear-gradient(90deg,transparent 49.75%, #3eaf7c 49.75%,#3eaf7c 50.25%,transparent 50.25%),
+                        linear-gradient(#000,#000);
+            border-radius: 50%;
+            position: relative;
+            overflow: hidden;
+        }
+        .radar::before{
+            content: "";
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background: linear-gradient(45deg,transparent 50%, #3eaf7c 100%);
+            animation: rotate 4s linear infinite;
+            transform-origin: 100% 100%;
+        }
+        @keyframes rotate {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="radar"></div>
+</body>
+</html>
