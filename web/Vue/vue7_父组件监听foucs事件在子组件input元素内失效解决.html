@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <base-input v-on:focus="onFocus" v-model="message" label="姓名"></base-input>
+        <p>{{message}}</p>
+    </div>
+    <script>
+        /*对于监听input类型的元素时，父级监听类似focus的.native原生方法会失效，且不会报错，方法onFocus不会被调用
+        * 官方文档做法：在组件内部添加一个计算属性computed的工厂函数，收集所有来自父组件(this.$listeners)和子组件的事件，并一一设置为input元素的事件监听
+        * 优点：完全封装成为一个真正的input，父组件不再需要.native*/
+        new Vue({
+            el: "#app",
+            data() {
+                return{
+                    message: "张三"
+                }
+            },
+            methods: {
+                onFocus(){
+                    console.log(123)
+                }
+            },
+            components: {
+                "base-input": {
+                    props: ["label","value"],
+                    computed: {
+                        inputListeners: function () {
+                            const vm = this
+                            // `Object.assign` 将所有的对象合并为一个新对象
+                            console.log(this.$listeners)
+                            return Object.assign({},
+                                // 我们从父级添加所有的监听器
+                                this.$listeners,
+                                // 然后我们添加自定义监听器，
+                                // 或覆写一些监听器的行为
+                                {
+                                    // 这里确保组件配合 `v-model` 的工作
+                                    input: function (event) {
+                                        vm.$emit('input', event.target.value)
+                                    }
+                                },
+                            )
+                        }
+                    },
+                    template: `<label>
+                                  {{ label }}
+                                  <input
+                                    v-bind="$attrs"
+                                    v-bind:value="value"
+                                    v-on="inputListeners"
+                                  >
+                                </label>`
+                }
+            }
+        })
+    </script>
+</body>
+</html>
